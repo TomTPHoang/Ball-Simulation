@@ -42,8 +42,8 @@ int main() {
         if (deltaTime > 0.1f) deltaTime = 0.1f;
 
         // Handle input
-        if (IsKeyPressed(KEY_ONE)) SetTargetFPS(60);
-        if (IsKeyPressed(KEY_TWO)) SetTargetFPS(120);
+        if (IsKeyPressed(KEY_ONE)) SetTargetFPS(60);  // set FPS to 60
+        if (IsKeyPressed(KEY_TWO)) SetTargetFPS(120); // set FPS to 120
         if (IsKeyPressed(KEY_THREE)) SetTargetFPS(0); // Uncapped FPS
         if (IsKeyPressed(KEY_R)) {
             restartFlag = true;
