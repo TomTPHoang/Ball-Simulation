@@ -25,7 +25,7 @@ void ResetBall() {
 int main() {
     const int screenWidth = 1280;
     const int screenHeight = 720;
-    InitWindow(screenWidth, screenHeight, "Bouncing Ball Simulation");
+    InitWindow(screenWidth, screenHeight, "Simple Real-Time Game Loop");
 
     // Randomize velocity when the program starts
     ResetBall();
@@ -39,7 +39,6 @@ int main() {
         float deltaTime = static_cast<float>(currentTime - lastTime);
         lastTime = currentTime;
 
-        // Prevent large delta times (breakpoint handling)
         if (deltaTime > 0.1f) deltaTime = 0.1f;
 
         // Handle input
@@ -77,9 +76,9 @@ int main() {
 
         // Debug Overlay (Right side)
         DrawText(TextFormat("FPS: %d", GetFPS()), screenWidth - 150, 10, 20, WHITE);
-        DrawText(TextFormat("Elapsed Time: %.2f sec", elapsedTime), screenWidth - 220, 40, 20, WHITE);
-        DrawText(TextFormat("Delta Time: %.4f sec", deltaTime), screenWidth - 220, 70, 20, WHITE);
-        DrawText(TextFormat("Frame Time: %.4f sec", GetFrameTime()), screenWidth - 220, 100, 20, WHITE);
+        DrawText(TextFormat("Elapsed Time: %.2f sec", elapsedTime), screenWidth - 250, 40, 20, WHITE);
+        DrawText(TextFormat("Delta Time: %.4f sec", deltaTime), screenWidth - 250, 70, 20, WHITE);
+        DrawText(TextFormat("Frame Time: %.4f sec", GetFrameTime()), screenWidth - 250, 100, 20, WHITE);
 
         elapsedTime += deltaTime; // Update elapsed time for each frame
 
