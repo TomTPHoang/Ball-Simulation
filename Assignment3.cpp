@@ -69,10 +69,10 @@ int main() {
 
         // Rendering
         BeginDrawing();
-        ClearBackground(DARKGRAY);
+        ClearBackground(BLACK);
 
         // Draw ball
-        DrawCircleV(ball.position, ball.radius, RED);
+        DrawCircleV(ball.position, ball.radius, GREEN);
 
         // Debug Overlay (Right side)
         DrawText(TextFormat("FPS: %d", GetFPS()), screenWidth - 150, 10, 20, WHITE);
