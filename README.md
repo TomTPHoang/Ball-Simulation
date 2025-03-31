@@ -1,23 +1,38 @@
-Bouncing Ball Simulation using raylib
-This project simulates a bouncing ball inside a window using the raylib library. The ball moves smoothly and consistently, independent of the system's frame rate, while allowing the user to control the frame rate, restart the simulation, and view debugging information.
+# Bouncing Ball Simulation (Raylib C++)
 
-Features
-Frame Rate Independence: The ball’s movement is frame rate independent, relying on elapsed time.
+This project simulates a bouncing ball inside a resizable window using the Raylib graphics library. It demonstrates a proper game loop with frame-rate independence, FPS capping, and debug information.
 
-Frame Rate Control: Capable of capping frame rate to 60 FPS, 120 FPS, or uncapped.
+## Features
 
-Breakpoint Handling: Gracefully handles large delta times.
+- Ball moves smoothly and bounces off window edges
+- Real-time FPS cap switching (keys 1-4 and arrow keys)
+- Delta time clamping to maintain simulation stability
+- Debug overlay displays FPS, frame time, and elapsed time
+- Resizable window with continuous simulation during resizing
+- Randomized initial ball velocity
 
-Debug Overlay: Displays current FPS, elapsed time, and delta time.
+## Controls
 
-Keybinds:
+| Key | Action |
+|---|---|
+| 1 | Cap FPS to 60 |
+| 2 | Cap FPS to 120 |
+| 3 | Cap FPS to 144 |
+| R | Restart the program |
+| ESC | Exit the simulation |
 
-1: Set FPS to 60
+## How to Build and Run
 
-2: Set FPS to 120
+### Prerequisites
 
-3: Uncapped FPS
+- Windows OS
+- Visual Studio 2019 or 2022
+- Raylib library (Included locally in the `Raylib` folder)
 
-R: Restart the simulation
+### Build Instructions
 
-ESC: Exit the program
+1. Open the `.sln` file in Visual Studio.
+2. Set the platform to `x64`.
+3. Build and run the project using `Ctrl + F5`.
+
+> Raylib is included locally in the `Raylib` folder, so no global installation is necessary.
