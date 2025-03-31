@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 
+// Ball structure 
 struct Ball {
     Vector2 position;
     Vector2 velocity;
@@ -9,22 +10,28 @@ struct Ball {
 };
 
 // Globals
-Ball ball = { {400, 300}, {200, 150}, 20 }; // Initial position and velocity
+Ball ball = { {400, 300}, {0, 0}, 20 };
 float targetFPS = 60;
 bool restartFlag = false;
+float elapsedTime = 0.0f;
 
+// Function to reset ball position and randomize velocity
 void ResetBall() {
-    ball.position = { 400, 300 };
-    ball.velocity = { 200, 150 };
+    ball.position = { 400, 300 }; // Fixed starting position
+    ball.velocity = { (float)GetRandomValue(-300, 300), (float)GetRandomValue(-300, 300) }; // Randomize velocity 
+    elapsedTime = 0.0f; // Reset the time to 0 on restart
 }
 
 int main() {
-    const int screenWidth = 800;
-    const int screenHeight = 600;
+    const int screenWidth = 1280;
+    const int screenHeight = 720;
     InitWindow(screenWidth, screenHeight, "Bouncing Ball Simulation");
+
+    // Randomize velocity when the program starts
+    ResetBall();
+
     SetTargetFPS(targetFPS);
 
-    float elapsedTime = 0.0f;
     double lastTime = GetTime();
 
     while (!WindowShouldClose()) {
@@ -39,7 +46,9 @@ int main() {
         if (IsKeyPressed(KEY_ONE)) SetTargetFPS(60);
         if (IsKeyPressed(KEY_TWO)) SetTargetFPS(120);
         if (IsKeyPressed(KEY_THREE)) SetTargetFPS(0); // Uncapped FPS
-        if (IsKeyPressed(KEY_R)) restartFlag = true;
+        if (IsKeyPressed(KEY_R)) {
+            restartFlag = true;
+        }
         if (IsKeyPressed(KEY_ESCAPE)) break;
 
         if (restartFlag) {
@@ -59,8 +68,6 @@ int main() {
             ball.velocity.y *= -1;
         }
 
-        elapsedTime += deltaTime;
-
         // Rendering
         BeginDrawing();
         ClearBackground(DARKGRAY);
@@ -68,10 +75,13 @@ int main() {
         // Draw ball
         DrawCircleV(ball.position, ball.radius, RED);
 
-        // Debug Overlay
+        // Debug Overlay (Right side)
         DrawText(TextFormat("FPS: %d", GetFPS()), screenWidth - 150, 10, 20, WHITE);
         DrawText(TextFormat("Elapsed Time: %.2f sec", elapsedTime), screenWidth - 220, 40, 20, WHITE);
         DrawText(TextFormat("Delta Time: %.4f sec", deltaTime), screenWidth - 220, 70, 20, WHITE);
+        DrawText(TextFormat("Frame Time: %.4f sec", GetFrameTime()), screenWidth - 220, 100, 20, WHITE);
+
+        elapsedTime += deltaTime; // Update elapsed time for each frame
 
         EndDrawing();
     }
